@@ -5,7 +5,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //sh
-                bat "docker build -t mayankluckym/selenium-docker -f ./Dockerfile2.txt ."
+                bat "docker build -t mayankluckym/selenium-docker-2 -f ./Dockerfile2.txt ."
             }
         }
         stage('Push Image') {
