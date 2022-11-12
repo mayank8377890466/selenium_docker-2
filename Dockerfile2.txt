@@ -7,10 +7,12 @@ COPY src /home/SeleniumFramework/src/
 #copying pom.xml of my framework
 COPY pom.xml /home/SeleniumFramework/
 
+RUN mvn -f /home/SeleniumFramework dependency:go-offline
+
 #copying testng.xml of my framework
 COPY testng.xml /home/SeleniumFramework/
 
 ADD healthcheck.sh healthcheck.sh
 #Running the suite
-ENTRYPOINT mvn -f /home/SeleniumFramework/pom.xml clean test
+ENTRYPOINT  mvn -f /home/SeleniumFramework/pom.xml clean test
 #ENTRYPOINT sh healthcheck.sh

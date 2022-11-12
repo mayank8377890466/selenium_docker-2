@@ -39,7 +39,6 @@ services:
     image: mayankluckym/selenium-docker-2
     depends_on:
       -  chrome
-
   hub:
     image: selenium/hub:4.5.0-20221004
     container_name: hub

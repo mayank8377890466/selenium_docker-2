@@ -35,7 +35,7 @@ services:
     links:
       - hub
   selenium-framework:
-    image: mayankluckym/selenium-docker-2
+    image: mayankluckym/sel-3
     depends_on:
       -chrome
     volumes:
