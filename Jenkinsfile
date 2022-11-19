@@ -5,7 +5,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 //sh
-                bat "docker build -t mayankluckym/selenium-docker-2 -f ./Dockerfile2.txt ."
+                bat "docker build -t mayankluckym/selenium-2 -f ./Dockerfile2.txt ."
             }
         }
         stage('Push Image') {
@@ -13,14 +13,14 @@ pipeline {
 			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
                     //sh
 			        bat "docker login --username=${user} --password=${pass}"
-			        bat "docker push mayankluckym/selenium-docker-2:latest"
+			        bat "docker push mayankluckym/selenium-2:latest"
 			    }
             }
         }
 		stage('Pull Image')
 		{
 		  steps{
-		    bat "docker pull mayankluckym/selenium-docker-2:latest"
+		    bat "docker pull mayankluckym/selenium-2:latest"
 		  }
 		}
 		stage("Start Grid"){

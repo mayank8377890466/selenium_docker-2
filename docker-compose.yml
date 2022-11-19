@@ -7,19 +7,19 @@ services:
     image: selenium/node-chrome:4.5.0-20221004
     shm_size: 2gb
     depends_on:
-      - hub
+      - hub_1
     environment:
       - SE_EVENT_BUS_HOST=hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-      - SE_NODE_MAX_SESSIONS=2
-      - SE_NODE_MAX_INSTANCES=2
+      - SE_NODE_MAX_SESSIONS=5
+      - SE_NODE_MAX_INSTANCES=5
 
   edge:
     image: selenium/node-edge:4.5.0-20221004
     shm_size: 2gb
     depends_on:
-      - hub
+      - hub_1
     environment:
       - SE_EVENT_BUS_HOST=hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
@@ -29,17 +29,17 @@ services:
     image: selenium/node-firefox:4.5.0-20221004
     shm_size: 2gb
     depends_on:
-      - hub
+      - hub_1
     environment:
       - SE_EVENT_BUS_HOST=hub
       - SE_EVENT_BUS_PUBLISH_PORT=4442
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
 
   selenium-framework:
-    image: mayankluckym/selenium-docker-2
+    image: mayankluckym/selenium-2
     depends_on:
       -  chrome
-  hub:
+  hub_1:
     image: selenium/hub:4.5.0-20221004
     container_name: hub
     ports:
