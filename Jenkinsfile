@@ -2,27 +2,6 @@ pipeline {
     // master executor should be set to 0
     agent any
     stages {
-        stage('Build Image') {
-            steps {
-                //sh
-                bat "docker build -t mayankluckym/selenium-2 -f ./Dockerfile2.txt ."
-            }
-        }
-        stage('Push Image') {
-            steps {
-			    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pass', usernameVariable: 'user')]) {
-                    //sh
-			        bat "docker login --username=${user} --password=${pass}"
-			        bat "docker push mayankluckym/selenium-2:latest"
-			    }
-            }
-        }
-		stage('Pull Image')
-		{
-		  steps{
-		    bat "docker pull mayankluckym/selenium-2:latest"
-		  }
-		}
 		stage("Start Grid"){
 			steps{
 				bat "docker-compose up -d hub_1 chrome firefox"
@@ -30,7 +9,7 @@ pipeline {
 		}
 		stage("Run Test"){
 			steps{
-				bat "docker-compose up selenium-framework"
+				bat "mvn clean test"
 			}
 		}
 	}
