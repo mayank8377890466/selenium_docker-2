@@ -2,7 +2,7 @@ pipeline {
     // master executor should be set to 0
     agent any
      tools {
-            maven 'Maven 3.8.7'
+            maven 'Maven 3.8.6'
             jdk 'jdk8'
         }
     stages {
